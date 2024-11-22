@@ -7,7 +7,13 @@ export class GithubController {
 
 
   webhookHandler = ( req:Request, res:Response ) => {
-    res.status(200).send('Webhook received');
+
+    const gitHubEvent = req.headers['x-github-event'] ?? 'unknown';
+    const gitHubSignature = req.headers['x-hub-signature-256'] ?? 'unknown';
+    const payload = req.body;
+
+
+    res.status(201).send('Accepted');
   }
 
 };
