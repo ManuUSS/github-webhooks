@@ -1,4 +1,5 @@
 import express from 'express';
+import { envs } from './config';
 
 (()=>{
 
@@ -10,6 +11,10 @@ function main () {
 
   const app = express();
 
-  app.listen()
+  
+  app.listen( envs.PORT, () => {
+    console.log(`Server listening on port ${envs.PORT}`);
+  });
+
 
 };
