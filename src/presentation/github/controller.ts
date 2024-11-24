@@ -13,12 +13,17 @@ export class GithubController {
 
     const gitHubEvent = req.headers['x-github-event'] ?? 'unknown';
     const gitHubSignature = req.headers['x-hub-signature-256'] ?? 'unknown';
+
     const payload = req.body;
     let message:string = '';
 
     switch ( gitHubEvent ) {
       case 'star':
         message = this.githubService.onStar( payload );
+      break;
+
+      case 'issues':
+        message = this.githubService.onIssue( payload );
       break;
 
       default:
